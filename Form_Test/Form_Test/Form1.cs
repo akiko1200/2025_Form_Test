@@ -16,34 +16,17 @@ namespace Form_Test
         {
             InitializeComponent();
 
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 6; j++) {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
                     // インスタンスの作成
-                    TestButton testButton = new TestButton();
-
-                    // ボタンの位置を設定
-                    testButton.Location = new Point(50 * j, 50 * i);
-
-                    // ボタンの大きさを設定
-                    testButton.Size = new Size(50, 50);
-
-                    // ボタン内のテキストを設定
-                    testButton.Text = "";
-
-                    // クリックしたときの処理を追加
-                    testButton.MouseHover += hogehogeClick;
+                    TestButton testButton = new TestButton(new Point(50 * i, 50 * j), new Size(50, 50), "あ");
 
                     // コントロールにボタンを追加
                     Controls.Add(testButton);
                 }
             }
-        }
-
-
-        // 自分で作成できる
-        private void hogehogeClick(object sender, EventArgs e)
-        {
-            MessageBox.Show("くりっく！");
         }
 
         // 自動生成
