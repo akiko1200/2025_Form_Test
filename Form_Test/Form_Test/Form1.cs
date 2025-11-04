@@ -31,6 +31,9 @@ namespace Form_Test
         /// </summary>
         const int BOARD_SIZE_Y = 3;
 
+        /// <summary>
+        /// TestButtonの二次元配列
+        /// </summary>
         private TestButton[,] _buttonArray;
 
 
@@ -47,8 +50,10 @@ namespace Form_Test
                 {
                     // インスタンスの作成
                     TestButton testButton = 
-                        new TestButton(new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j)
-                                      , new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
+                        new TestButton(
+                            this, 
+                            new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j), 
+                            new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
 
                     // 配列にボタンの参照を追加
                     _buttonArray[j, i] = testButton;
@@ -58,8 +63,15 @@ namespace Form_Test
                 }
             }
 
-            _buttonArray[1, 0].SetEnable(true);
+            //GetTextButton(0, 0).SetEnable(true);
+            //_buttonArray[1, 0].SetEnable(true);
         }
+
+        public TestButton GetTestButton(int x, int y)
+        {
+            return _buttonArray[y, x];
+        }
+
 
         // 自動生成
         private void button1_Click(object sender, EventArgs e)
