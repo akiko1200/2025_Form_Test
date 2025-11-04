@@ -52,8 +52,9 @@ namespace Form_Test
                     TestButton testButton = 
                         new TestButton(
                             this, 
-                            new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j), 
-                            new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
+                            i, j,
+                            new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),
+                            "");
 
                     // 配列にボタンの参照を追加
                     _buttonArray[j, i] = testButton;
