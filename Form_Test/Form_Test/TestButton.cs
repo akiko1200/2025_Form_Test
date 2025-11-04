@@ -69,6 +69,12 @@ namespace Form_Test
             }
         }
 
+        public void Toggle()
+        {
+            SetEnable(!_enable);
+        }
+
+
         /// <summary>
         /// 各ボタンがクリックされたときに呼び出される関数
         /// クリックイベント
@@ -78,7 +84,7 @@ namespace Form_Test
         // 自分で作成することも可能
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestButton(_x, _y).SetEnable(true);
+            _form1.GetTestButton(_x, _y).Toggle();
 
         }
 

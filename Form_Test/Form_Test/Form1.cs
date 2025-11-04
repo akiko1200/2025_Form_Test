@@ -68,8 +68,18 @@ namespace Form_Test
             //_buttonArray[1, 0].SetEnable(true);
         }
 
+        /// <summary>
+        /// TestButtonを取得する関数
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public TestButton GetTestButton(int x, int y)
         {
+            // 配列外参照対策
+            if (x < 0 || x >= BOARD_SIZE_X) return null;
+            if (y < 0 || y >= BOARD_SIZE_Y) return null;
+
             return _buttonArray[y, x];
         }
 
