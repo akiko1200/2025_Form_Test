@@ -28,7 +28,7 @@ namespace Form_Test
         /// <summary>縦位置</summary>
         private int _y;
 
-
+        // コンストラクタ
         public TestButton(Form1 form1, int x, int y, Size size, string text)
         {
             // Form1の参照を保管
@@ -50,8 +50,8 @@ namespace Form_Test
             SetEnable(false);
 
             Click += ClickEvent;
+            
         }
-
 
 
         /// <summary>onとoffの設定</summary>
@@ -59,7 +59,7 @@ namespace Form_Test
         public void SetEnable(bool on)
         {
             _enable = on;
-            if (on)
+            if (on)       // onがtrueなら_onColor
             {
                 BackColor = _onColor;
             }

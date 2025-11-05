@@ -40,7 +40,7 @@ namespace Form_Test
         public Form1()
         {
             InitializeComponent();
-            
+
             // _buttonArrayの初期化
             _buttonArray = new TestButton[BOARD_SIZE_Y, BOARD_SIZE_X];
 
@@ -49,9 +49,9 @@ namespace Form_Test
                 for (int j = 0; j < BOARD_SIZE_Y; j++)
                 {
                     // インスタンスの作成
-                    TestButton testButton = 
+                    TestButton testButton =
                         new TestButton(
-                            this, 
+                            this,
                             i, j,
                             new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),
                             "");
@@ -64,8 +64,15 @@ namespace Form_Test
                 }
             }
 
-            //GetTextButton(0, 0).SetEnable(true);
-            //_buttonArray[1, 0].SetEnable(true);
+            // 初期盤面のランダム化
+            Random random = new Random();
+            int r = random.Next(2, BOARD_SIZE_X * BOARD_SIZE_Y);
+            for (int i = 0; i < r; i++)
+            {
+                int random_x = random.Next(BOARD_SIZE_X);
+                int random_y = random.Next(BOARD_SIZE_Y);
+                GetTestButton(random_x, random_y).SetEnable(true);
+            }
         }
 
         /// <summary>
@@ -74,7 +81,7 @@ namespace Form_Test
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public TestButton GetTestButton(int x, int y)
+        public TestButton GetTestButton(int x, int y)  // _buttonArrayだと配列外の数字のときエラーになる
         {
             // 配列外参照対策
             if (x < 0 || x >= BOARD_SIZE_X) return null;
