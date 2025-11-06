@@ -66,14 +66,7 @@ namespace Form_Test
             }
 
             // 初期盤面のランダム化
-            Random random = new Random();
-            int r = random.Next(2, BOARD_SIZE_X * BOARD_SIZE_Y);
-            for (int i = 0; i < r; i++)
-            {
-                int random_x = random.Next(BOARD_SIZE_X);
-                int random_y = random.Next(BOARD_SIZE_Y);
-                GetTestButton(random_x, random_y).SetEnable(true);
-            }
+            StartRandom();
         }
 
         /// <summary>
@@ -91,6 +84,20 @@ namespace Form_Test
             return _buttonArray[y, x];
         }
 
+        /// <summary>
+        /// 盤面をランダム化する関数
+        /// </summary>
+        public void StartRandom()
+        {
+            Random random = new Random();
+            int r = random.Next(2, BOARD_SIZE_X * BOARD_SIZE_Y);
+            for (int i = 0; i < r; i++)
+            {
+                int random_x = random.Next(BOARD_SIZE_X);
+                int random_y = random.Next(BOARD_SIZE_Y);
+                GetTestButton(random_x, random_y).SetEnable(true);
+            }
+        }
 
         // 自動生成
         private void button1_Click(object sender, EventArgs e)

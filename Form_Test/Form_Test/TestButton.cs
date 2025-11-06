@@ -132,6 +132,9 @@ namespace Form_Test
             if (trueCnt == 0 || trueCnt == _board_size_x * _board_size_y)
             {
                 MessageBox.Show("クリア！");
+
+                // クリア後の再ランダム化
+                _form1.StartRandom();
             }
 
         }
