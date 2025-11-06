@@ -28,8 +28,14 @@ namespace Form_Test
         /// <summary>縦位置</summary>
         private int _y;
 
+        /// <summary>ボタンの列数</summary>
+        private int _board_size_x;
+
+        /// <summary>ボタンの行数</summary>
+        private int _board_size_y;
+
         // コンストラクタ
-        public TestButton(Form1 form1, int x, int y, Size size, string text)
+        public TestButton(Form1 form1, int x, int y, Size size, string text, int board_size_x, int board_size_y)
         {
             // Form1の参照を保管
             _form1 = form1;
@@ -46,6 +52,12 @@ namespace Form_Test
             Size = size;
             // ボタン内のテキストを設定
             Text = text;
+
+            // ボタンの列数を保管
+            _board_size_x = board_size_x;
+
+            // ボタンの行数を保管
+            _board_size_y = board_size_y;
 
             SetEnable(false);
 
@@ -101,9 +113,30 @@ namespace Form_Test
                 }
             }
 
+            // クリアしたらメッセージボックスを表示
+            int trueCnt = 0;
+            for (int i = 0; i < _board_size_y; i++)
+            {
+                for (int j = 0; j < _board_size_x; j++)
+                {
+                    TestButton btn = _form1.GetTestButton(j, i);
+                    if (btn != null)
+                    {
+                        if (btn.IsEnable() == true)
+                        {
+                            trueCnt++;
+                        }
+                    }
+                }
+            }
+            if (trueCnt == 0 || trueCnt == _board_size_x * _board_size_y)
+            {
+                MessageBox.Show("クリア！");
+            }
+
         }
 
-        // かっこいい書き方に使った関数
+        // かっこいい書き方に使用
         private int[][] _toggleData =
         {
             new int[]{0, 0},
@@ -112,6 +145,16 @@ namespace Form_Test
             new int[]{0, 1 },
             new int[]{0, -1},
         };
+
+        /// <summary>
+        /// ボタンがtrueかfalseか確認
+        /// </summary>
+        /// <returns></returns>
+        private bool IsEnable()
+        {
+            return _enable;
+        }
+
 
     }
 }

@@ -54,7 +54,8 @@ namespace Form_Test
                             this,
                             i, j,
                             new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),
-                            "");
+                            "",
+                            BOARD_SIZE_X, BOARD_SIZE_Y);
 
                     // 配列にボタンの参照を追加
                     _buttonArray[j, i] = testButton;
