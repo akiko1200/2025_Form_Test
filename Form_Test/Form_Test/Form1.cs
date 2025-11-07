@@ -95,7 +95,7 @@ namespace Form_Test
             {
                 int random_x = random.Next(BOARD_SIZE_X);
                 int random_y = random.Next(BOARD_SIZE_Y);
-                GetTestButton(random_x, random_y).SetEnable(true);
+                GetTestButton(random_x, random_y).Toggle();
             }
         }
 
