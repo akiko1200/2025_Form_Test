@@ -113,7 +113,7 @@ namespace Form_Test
                 }
             }
 
-            // クリアしたらメッセージボックスを表示
+            // クリアしたかの判定
             int trueCnt = 0;
             for (int i = 0; i < _board_size_y; i++)
             {
@@ -129,12 +129,20 @@ namespace Form_Test
                     }
                 }
             }
+            // クリアしていたらメッセージボックスを表示
             if (trueCnt == 0 || trueCnt == _board_size_x * _board_size_y)
             {
-                MessageBox.Show("クリア！");
+                DialogResult result = MessageBox.Show("クリア！！！\r\n再チャレンジしますか？",
+                                                      "おめでとうございます", MessageBoxButtons.YesNo);
 
-                // クリア後の再ランダム化
-                _form1.StartRandom();
+                if (result == DialogResult.Yes)
+                {
+                    _form1.StartRandom();  // はいを押されたら再ランダム化
+                }
+                else if (result == DialogResult.No)
+                {
+                    _form1.Close();  // いいえを押されたらフォームを閉じる
+                }
             }
 
         }
