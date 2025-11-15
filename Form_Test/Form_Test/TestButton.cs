@@ -94,6 +94,29 @@ namespace Form_Test
         /// <param name="e"></param>
         private void ClickEvent(object sender, EventArgs e)
         {
+            ToggleButtonAround();
+
+            if (IsClear())
+            {
+                OnClear();
+            }
+
+        }
+
+        /// <summary>
+        /// ボタンがtrueかfalseか確認
+        /// </summary>
+        /// <returns></returns>
+        private bool IsEnable()
+        {
+            return _enable;
+        }
+
+        /// <summary>
+        /// 押されたボタンとその上下左右のボタンの色を変える
+        /// </summary>
+        private void ToggleButtonAround()
+        {
             // 楽な書き方
             //_form1.GetTestButton(_x, _y)?.Toggle();
             //_form1.GetTestButton(_x + 1, _y)?.Toggle();
@@ -112,8 +135,24 @@ namespace Form_Test
                     button.Toggle();
                 }
             }
+        }
 
-            // クリアしたかの判定
+        // かっこいい書き方に使用
+        private int[][] _toggleData =
+        {
+            new int[]{0, 0},
+            new int[]{1, 0} ,
+            new int[]{-1, 0},
+            new int[]{0, 1 },
+            new int[]{0, -1},
+        };
+
+        /// <summary>
+        /// クリアしたかの判定
+        /// </summary>
+        /// <returns></returns>
+        private bool IsClear()
+        {
             int trueCnt = 0;
             for (int i = 0; i < _board_size_y; i++)
             {
@@ -129,41 +168,26 @@ namespace Form_Test
                     }
                 }
             }
-            // クリアしていたらメッセージボックスを表示
-            if (trueCnt == 0 || trueCnt == _board_size_x * _board_size_y)
-            {
-                DialogResult result = MessageBox.Show("クリア！！！\r\n再チャレンジしますか？",
-                                                      "おめでとうございます", MessageBoxButtons.YesNo);
 
-                if (result == DialogResult.Yes)
-                {
-                    _form1.StartRandom();  // はいを押されたら再ランダム化
-                }
-                else if (result == DialogResult.No)
-                {
-                    _form1.Close();  // いいえを押されたらフォームを閉じる
-                }
-            }
-
+            return trueCnt == 0 || trueCnt == _board_size_x * _board_size_y;
         }
 
-        // かっこいい書き方に使用
-        private int[][] _toggleData =
-        {
-            new int[]{0, 0},
-            new int[]{1, 0} ,
-            new int[]{-1, 0},
-            new int[]{0, 1 },
-            new int[]{0, -1},
-        };
-
         /// <summary>
-        /// ボタンがtrueかfalseか確認
+        /// クリア時の処理
         /// </summary>
-        /// <returns></returns>
-        private bool IsEnable()
+        private void OnClear()
         {
-            return _enable;
+            DialogResult result = MessageBox.Show("クリア！！！\r\n再チャレンジしますか？",
+                                                      "おめでとうございます", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                _form1.StartRandom();  // はいを押されたら再ランダム化
+            }
+            else if (result == DialogResult.No)
+            {
+                _form1.Close();  // いいえを押されたらフォームを閉じる
+            }
         }
 
 
